@@ -1,21 +1,22 @@
+from dotenv import load_dotenv
 import asyncio
 from os import listdir
 from random import *
 import discord
 import os
-import time
+
 from discord import File
 from discord.ext import commands
-import typing
-from DSUser import *
+from application.entities.DSUser import DSUser
+
+load_dotenv('.env')
+TOKEN = os.getenv('DISCORD_TOKEN')
 
 bot = commands.Bot(command_prefix="$")
 client = discord.Client()
 
-images_path = os.path.join(os.path.dirname(__file__), "../images/")
+images_path = os.path.join(os.path.dirname(__file__), "resources/images/")
 images = [images_path + c for c in listdir(images_path)]
-
-TOKEN = 'ODQzNDYwMzkwMzQ4NTIxNDcy.YKELsw.n3XLTxVEwnqC0ungeirmuqAn_yY'
 
 black_list = []
 ban_list = []
