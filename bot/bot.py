@@ -15,9 +15,11 @@ client = discord.Client()
 images_path = os.path.join(os.path.dirname(__file__), "../images/")
 images = [images_path + c for c in listdir(images_path)]
 
-TOKEN = 'ODQzNDYwMzkwMzQ4NTIxNDcy.YKELsw.CuzF0IP3eG8d4L7L3rOvoh0-hCc'
+TOKEN = 'ODQzNDYwMzkwMzQ4NTIxNDcy.YKELsw.n3XLTxVEwnqC0ungeirmuqAn_yY'
 
 black_list = []
+ban_list = []
+admins = [DSUser(str('overpathz#7180'))]
 
 orys = ['орищин', 'оришка', 'Орищин', 'Оришин']
 
@@ -29,10 +31,14 @@ async def flood(message, body, times):
     if int(times) > 20:
         await message.channel.send('Ти не приахуел??')
     else:
+        if checkInLst(timeUser, ban_list):
+            await message.channel.send(f'Ти отримав бан на команду "flood".')
+            return
+
         for i in black_list:
             if timeUser.name == i.name:
                 print_lock = i.lockdown
-                await message.channel.send(f'You have 10 sec cooldown. {print_lock} seconds left')
+                await message.channel.send(f'Кулдаун на 10 сек). {print_lock} залишилося.')
                 return
         else:
             for _ in range(int(times)):
@@ -65,6 +71,22 @@ async def bl(message):
 
 
 @bot.command(pass_context=True)
+async def ban(message, user):
+    temp_user = DSUser(str(message.author))
+    banned_user = DSUser(str(user))
+
+    if checkInLst(temp_user, admins):
+        ban_list.append(banned_user)
+    else:
+        await message.channel.send('Ти не адмін!')
+
+
+@bot.command(pass_context=True)
+async def unban(message, user1):
+    pass
+
+
+@bot.command(pass_context=True)
 async def text(message, text1):
     if str(text1).lower() == 'орищин, ти тут?':
         await message.channel.send('Тут! Ти розраху дописав хуїла?')
@@ -81,14 +103,6 @@ async def hello(message):
     await message.channel.send(f'hello, {  str(message.author).split("#")[0]  }')
 
 
-@bot.command()
-async def ban(ctx, members: commands.Greedy[discord.Member],
-                   delete_days: typing.Optional[int] = 0, *,
-                   reason: str):
-
-    for member in members:
-        await member.ban(delete_message_days=delete_days, reason=reason)
-
 # --------------------
 #   service methods
 # --------------------
@@ -100,6 +114,12 @@ async def minus_cooldown():
             i.minusTime()
             await asyncio.sleep(1)
         black_list.remove(i)
+
+
+def checkInLst(temp_user, lst):
+    for i in lst:
+        if temp_user.get_name() == i.get_name():
+            return True
 
 
 bot.run(TOKEN)

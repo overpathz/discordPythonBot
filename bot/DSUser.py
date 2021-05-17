@@ -9,6 +9,9 @@ class DSUser:
     def minusTime(self):
         self.lockdown -= 1
 
+    def get_name(self):
+        return str(self.name)
+
     def __str__(self):
         return f'{self.name}'
 
