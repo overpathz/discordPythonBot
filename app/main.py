@@ -1,41 +1,34 @@
-from dotenv import load_dotenv
 import asyncio
-from os import listdir
-from random import *
-import discord
 import os
-
-from discord import File
+import discord
 from discord.ext import commands
-from application.entities.DSUser import DSUser
-from configs import config
+from dotenv import load_dotenv
+from app.entities.DBUser import DSUser
+
+load_dotenv()
+TOKEN = os.getenv('TOKEN')
 
 bot = commands.Bot(command_prefix="$")
 client = discord.Client()
-
-images_path = os.path.join(os.path.dirname(__file__), "resources/images/")
-images = [images_path + c for c in listdir(images_path)]
 
 black_list = []
 ban_list = []
 admins = [DSUser(str('overpathz#7180'))]
 
-orys = ['орищин', 'оришка', 'Орищин', 'Оришин']
-
 
 @bot.command(pass_context=True)
 async def flood(message, body, times):
-    timeUser = DSUser(str(message.author))
+    time_user = DSUser(str(message.author))
 
     if int(times) > 20:
         await message.channel.send('Ти не приахуел??')
     else:
-        if checkInLst(timeUser, ban_list):
+        if checkInLst(time_user, ban_list):
             await message.channel.send(f'Ти отримав бан на команду "flood".')
             return
 
         for i in black_list:
-            if timeUser.name == i.name:
+            if time_user.name == i.name:
                 print_lock = i.lockdown
                 await message.channel.send(f'Кулдаун на 10 сек). {print_lock} залишилося.')
                 return
@@ -44,24 +37,19 @@ async def flood(message, body, times):
                 await message.channel.send(str(body))
                 await asyncio.sleep(0.5)
 
-            isInLst = False
+            is_in_lst = False
             for i in black_list:
-                if timeUser.name == i.name:
-                    isInLst = True
+                if time_user.name == i.name:
+                    is_in_lst = True
 
-            if not isInLst:
+            if not is_in_lst:
                 black_list.append(DSUser(str(message.author)))
                 await minus_cooldown()
 
 
 @bot.event
 async def on_ready():
-    print('We have logged in as {0.user}'.format(client))
-
-
-@bot.command(pass_context=True)
-async def image(ctx):
-    await ctx.send(file=File((choice(images))))
+    print(f'Ready to use!')
 
 
 @bot.command(pass_context=True)
@@ -81,20 +69,13 @@ async def ban(message, user):
 
 
 @bot.command(pass_context=True)
-async def unban(message, user1):
+async def unban():
     pass
 
 
 @bot.command(pass_context=True)
-async def text(message, text1):
-    if str(text1).lower() == 'орищин, ти тут?':
-        await message.channel.send('Тут! Ти розраху дописав хуїла?')
-
-    elif 'диф' in str(text1).lower():
-        await message.channel.send('ДИФ РНЯ ТОП!!')
-
-    elif str(text1).lower().split()[0] in orys or str(text1).lower().split()[1] in orys:
-        await message.channel.send('нахуй пішов')
+async def text():
+    pass
 
 
 @bot.command(pass_context=True)
@@ -121,4 +102,4 @@ def checkInLst(temp_user, lst):
             return True
 
 
-bot.run(config.DISCORD_TOKEN)
+bot.run(TOKEN)
