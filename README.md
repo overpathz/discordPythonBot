@@ -38,5 +38,5 @@ The project contains 3 .py files (with bot commands)
 - service.py - helpful methods (perform various checks, contain frequently used code blocks, 
 and help you better decompose the program)
 
-### Open any of these .py files and start writing new or adding to the current functionality
+### Open any of these files. py and start writing new or adding to the current functionality
 ### Cheers :)
