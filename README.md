@@ -32,7 +32,7 @@ Create in your project directory .env file, which will be contain a bot token.
 
 ## Development
 
-The project contains 3 .py files
+The project contains 3 .py files (with bot commands)
 - admin.py - bot commands for admins, at the beginning of the method it checks whether the user is an admin
 - user.py - commands that can be used by default users
 - service.py - helpful methods (perform various checks, contain frequently used code blocks, 
