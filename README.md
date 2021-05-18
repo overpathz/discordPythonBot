@@ -36,7 +36,7 @@ The project contains 3 .py files
 - admin.py - bot commands for admins, at the beginning of the method it checks whether the user is an admin
 - user.py - commands that can be used by default users
 - service.py - helpful methods( perform various checks, contain frequently used code blocks, 
-- and help you better decompose the program )
+and help you better decompose the program )
 
 ### Open any of these .py files and start writing new or adding to the current functionality
 ### Cheers :)
