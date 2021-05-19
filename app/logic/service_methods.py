@@ -9,15 +9,31 @@ from app.configs.lists import *
 # --------------------
 
 
+# method for minus cooldown chat time for each user in cooldown list
 async def minus_cooldown():
-    for i in black_list:
+    for i in cooldown_list:
         while i.lockdown != 0:
             i.minusTime()
             await asyncio.sleep(1)
-        black_list.remove(i)
+        cooldown_list.remove(i)
 
 
-def checkInLst(temp_user, lst):
+# returns true if the user is in given list (ban list, admin list, etc)
+def check_is_user_in_list(temp_user, lst):
     for i in lst:
+        if temp_user.get_name() == i.get_name():
+            return True
+
+
+# returns true if the user is an admin
+def check_is_admin(temp_user):
+    for i in admins:
+        if temp_user.get_name() == i.get_name():
+            return True
+
+
+# returns true if the user is the ban
+def check_is_in_ban(temp_user):
+    for i in ban_list:
         if temp_user.get_name() == i.get_name():
             return True
