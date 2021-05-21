@@ -7,7 +7,7 @@
 - own chat ban system
 - own permission system
 
-![image](https://lh3.googleusercontent.com/PE3DYSrk8EyPQms6YXrCvVKg25qkFOR770Jyy_B1UnjtNOSMyyV6GBmM92s8lifmIJVpeYtH06bsrzGBF-s9GmiUJgxe7B39vI8M1y-DedfmK7BTXTmAq_cC2JtTUt8JTQ=w1280)
+![image](https://1.bp.blogspot.com/--HAjA7KG7ag/YKff8OyMs7I/AAAAAAAABzI/QU-DgCpf86QNbCmb6CW-cz995BhUIOrEQCLcBGAsYHQ/w463-h453/Screenshot_19.png)
 
 ## Set up
 
