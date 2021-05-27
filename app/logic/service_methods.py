@@ -4,10 +4,6 @@ from app.configs.bot_setting import bot
 from app.entities.DBUser import DSUser
 from app.configs.lists import *
 
-# --------------------
-#   service methods
-# --------------------
-
 
 # method for minus cooldown chat time for each user in cooldown list
 async def minus_cooldown():
