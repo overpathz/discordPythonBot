@@ -5,12 +5,6 @@ from app.entities.DBUser import DSUser
 from app.configs.lists import *
 from app.logic.service_methods import *
 
-
-@bot.command(pass_context=True)
-async def text():
-    pass
-
-
 @bot.command(pass_context=True)
 async def hello(message):
     await message.channel.send(f'hello, {  str(message.author).split("#")[0]  }')
