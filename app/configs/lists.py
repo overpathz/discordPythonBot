@@ -2,4 +2,4 @@ from app.entities.DBUser import DSUser
 
 cooldown_list = []
 ban_list = []
-admins = [DSUser(str('overpathz#7180')), DSUser(str('Night_Angel#8362'))]
+admins = [DSUser(str('overpathz#----')), DSUser(str('Night_Angel#----'))]
